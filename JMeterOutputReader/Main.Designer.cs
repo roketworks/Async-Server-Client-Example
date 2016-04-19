@@ -51,6 +51,9 @@
       // 
       // listView1
       // 
+      this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.listView1.FullRowSelect = true;
       this.listView1.GridLines = true;
       this.listView1.Location = new System.Drawing.Point(3, 3);
@@ -68,6 +71,7 @@
       this.textBox1.Location = new System.Drawing.Point(3, 3);
       this.textBox1.Multiline = true;
       this.textBox1.Name = "textBox1";
+      this.textBox1.ReadOnly = true;
       this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
       this.textBox1.Size = new System.Drawing.Size(606, 669);
       this.textBox1.TabIndex = 0;

@@ -63,9 +63,9 @@ namespace SocketLib {
       Socket handler = listener.EndAccept(ar);
 
       // Create the state object.
-      StateObject state = new StateObject();
+      ClientStateObject state = new ClientStateObject();
       state.workSocket = handler;
-      handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
+      handler.BeginReceive(state.buffer, 0, ClientStateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
     }
 
     public static void ReadCallback(IAsyncResult ar) {
@@ -73,7 +73,7 @@ namespace SocketLib {
 
       // Retrieve the state object and the handler socket
       // from the asynchronous state object.
-      StateObject state = (StateObject)ar.AsyncState;
+      ClientStateObject state = (ClientStateObject)ar.AsyncState;
       Socket handler = state.workSocket;
 
       // Read data from the client socket. 
@@ -81,7 +81,7 @@ namespace SocketLib {
 
       if (bytesRead > 0) {
         state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-        handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
+        handler.BeginReceive(state.buffer, 0, ClientStateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
         // Echo the data back to the client.
         //Send(handler, content);
       }
@@ -119,12 +119,12 @@ namespace SocketLib {
       }
     }
 
-    private static StateObject ByteArrayToObject(byte[] arrBytes, int length) {
+    private static ClientStateObject ByteArrayToObject(byte[] arrBytes, int length) {
       MemoryStream memStream = new MemoryStream();
       BinaryFormatter binForm = new BinaryFormatter();
       memStream.Write(arrBytes, 0, length);
       memStream.Seek(0, SeekOrigin.Begin);
-      var obj = (StateObject)binForm.Deserialize(memStream);
+      var obj = (ClientStateObject)binForm.Deserialize(memStream);
       return obj;
     }
   }
