@@ -12,9 +12,6 @@ using Shared;
 
 namespace SocketLib {
   public class AsynchronousClient : IDisposable {
-    // The port number for the remote device.
-    private const int port = 8080;
-
     // ManualResetEvent instances signal completion.
     public ManualResetEvent connected = new ManualResetEvent(false);
     public ManualResetEvent sendDone = new ManualResetEvent(false);
@@ -26,17 +23,17 @@ namespace SocketLib {
     public delegate void ConnectedHandler(AsynchronousClient a);
     public static event ConnectedHandler Connected;
 
-    public delegate void MessageReceivedHandler(AsynchronousClient a, String msg);
+    public delegate void MessageReceivedHandler(AsynchronousClient a, string data);
     public static event MessageReceivedHandler MessageReceived;
 
     public delegate void MessageSubmittedHandler(AsynchronousClient a, bool close);
     public static event MessageSubmittedHandler MessageSubmitted;
 
-    public void StartClient() {
+    public void StartClient(string ip, int port) {
       try {
-        IPHostEntry ipHostInfo = Dns.Resolve("TM000080-VM");
-        IPAddress ipAddress = ipHostInfo.AddressList[0];
-        IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
+        //IPHostEntry ipHostInfo = Dns.GetHostEntry(ip);
+        //IPAddress ipAddress = ipHostInfo.AddressList[0];
+        IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse(ip), port);
 
         _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         _listener.BeginConnect(remoteEP, new AsyncCallback(ConnectCallback), _listener);

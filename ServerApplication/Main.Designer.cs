@@ -1,4 +1,4 @@
-﻿namespace JMeterOutputReader {
+﻿namespace AsyncDemo.ServerApplication {
   partial class Main {
     /// <summary>
     /// Required designer variable.
@@ -27,6 +27,9 @@
       this.listViewClients = new System.Windows.Forms.ListView();
       this.colClientId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnAdditional = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.txtClientId = new System.Windows.Forms.TextBox();
+      this.lblClientId = new System.Windows.Forms.Label();
+      this.btnStopClient = new System.Windows.Forms.Button();
       this.txtClientMessage = new System.Windows.Forms.TextBox();
       this.btnSendMessage = new System.Windows.Forms.Button();
       this.txtOutput = new System.Windows.Forms.TextBox();
@@ -48,6 +51,9 @@
       // 
       // splitContainer1.Panel2
       // 
+      this.splitContainer1.Panel2.Controls.Add(this.txtClientId);
+      this.splitContainer1.Panel2.Controls.Add(this.lblClientId);
+      this.splitContainer1.Panel2.Controls.Add(this.btnStopClient);
       this.splitContainer1.Panel2.Controls.Add(this.txtClientMessage);
       this.splitContainer1.Panel2.Controls.Add(this.btnSendMessage);
       this.splitContainer1.Panel2.Controls.Add(this.txtOutput);
@@ -82,16 +88,44 @@
       this.columnAdditional.Text = "Infomation";
       this.columnAdditional.Width = 174;
       // 
+      // txtClientId
+      // 
+      this.txtClientId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.txtClientId.Location = new System.Drawing.Point(60, 17);
+      this.txtClientId.Name = "txtClientId";
+      this.txtClientId.ReadOnly = true;
+      this.txtClientId.Size = new System.Drawing.Size(404, 13);
+      this.txtClientId.TabIndex = 5;
+      // 
+      // lblClientId
+      // 
+      this.lblClientId.AutoSize = true;
+      this.lblClientId.Location = new System.Drawing.Point(3, 17);
+      this.lblClientId.Name = "lblClientId";
+      this.lblClientId.Size = new System.Drawing.Size(51, 13);
+      this.lblClientId.TabIndex = 4;
+      this.lblClientId.Text = "Client Id: ";
+      // 
+      // btnStopClient
+      // 
+      this.btnStopClient.Location = new System.Drawing.Point(470, 12);
+      this.btnStopClient.Name = "btnStopClient";
+      this.btnStopClient.Size = new System.Drawing.Size(86, 23);
+      this.btnStopClient.TabIndex = 3;
+      this.btnStopClient.Text = "Stop Client";
+      this.btnStopClient.UseVisualStyleBackColor = true;
+      this.btnStopClient.Click += new System.EventHandler(this.btnStopClient_Click);
+      // 
       // txtClientMessage
       // 
-      this.txtClientMessage.Location = new System.Drawing.Point(105, 482);
+      this.txtClientMessage.Location = new System.Drawing.Point(3, 484);
       this.txtClientMessage.Name = "txtClientMessage";
-      this.txtClientMessage.Size = new System.Drawing.Size(460, 20);
+      this.txtClientMessage.Size = new System.Drawing.Size(461, 20);
       this.txtClientMessage.TabIndex = 2;
       // 
       // btnSendMessage
       // 
-      this.btnSendMessage.Location = new System.Drawing.Point(3, 482);
+      this.btnSendMessage.Location = new System.Drawing.Point(470, 482);
       this.btnSendMessage.Name = "btnSendMessage";
       this.btnSendMessage.Size = new System.Drawing.Size(95, 23);
       this.btnSendMessage.TabIndex = 1;
@@ -104,12 +138,12 @@
       this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtOutput.Location = new System.Drawing.Point(3, 3);
+      this.txtOutput.Location = new System.Drawing.Point(3, 41);
       this.txtOutput.Multiline = true;
       this.txtOutput.Name = "txtOutput";
       this.txtOutput.ReadOnly = true;
       this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.txtOutput.Size = new System.Drawing.Size(562, 473);
+      this.txtOutput.Size = new System.Drawing.Size(562, 435);
       this.txtOutput.TabIndex = 0;
       // 
       // Main
@@ -119,7 +153,7 @@
       this.ClientSize = new System.Drawing.Size(857, 514);
       this.Controls.Add(this.splitContainer1);
       this.Name = "Main";
-      this.Text = "JMeter Output Reader";
+      this.Text = "Server Application";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
       this.splitContainer1.Panel1.ResumeLayout(false);
       this.splitContainer1.Panel2.ResumeLayout(false);
@@ -139,6 +173,9 @@
     private System.Windows.Forms.ColumnHeader columnAdditional;
     private System.Windows.Forms.Button btnSendMessage;
     private System.Windows.Forms.TextBox txtClientMessage;
+    private System.Windows.Forms.TextBox txtClientId;
+    private System.Windows.Forms.Label lblClientId;
+    private System.Windows.Forms.Button btnStopClient;
   }
 }
 

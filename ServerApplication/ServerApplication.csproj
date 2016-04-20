@@ -7,8 +7,8 @@
     <ProjectGuid>{C1EE9A94-970A-445F-B238-4D1A28F44CB2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JMeterOutputReader</RootNamespace>
-    <AssemblyName>JMeterOutputReader</AssemblyName>
+    <RootNamespace>AsyncDemo.ServerApplication</RootNamespace>
+    <AssemblyName>AsyncDemo.ServerApplication</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -72,6 +72,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

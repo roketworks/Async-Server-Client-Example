@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JMeterOutputReader.Properties {
+namespace TestSocketClient.Properties {
 
 
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

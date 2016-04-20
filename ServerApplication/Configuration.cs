@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
-namespace JMeterOutputReader {
+namespace AsyncDemo.ServerApplication {
   public partial class Configuration : Form {
 
     private bool isConfigValid = false;

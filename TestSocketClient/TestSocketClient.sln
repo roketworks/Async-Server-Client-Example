@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSocketClient", "TestSocketClient\TestSocketClient.csproj", "{E9A15325-34B5-4D89-8B3B-4E4511B9EB50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "..\Shared\Shared.csproj", "{60E15D90-2B2B-454E-BB47-2AD5B5973646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketLib", "..\SocketLib\SocketLib.csproj", "{4D5683BA-8E7D-49FA-80FF-468E7FEB9249}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9A15325-34B5-4D89-8B3B-4E4511B9EB50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A15325-34B5-4D89-8B3B-4E4511B9EB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A15325-34B5-4D89-8B3B-4E4511B9EB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A15325-34B5-4D89-8B3B-4E4511B9EB50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E15D90-2B2B-454E-BB47-2AD5B5973646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E15D90-2B2B-454E-BB47-2AD5B5973646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E15D90-2B2B-454E-BB47-2AD5B5973646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E15D90-2B2B-454E-BB47-2AD5B5973646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D5683BA-8E7D-49FA-80FF-468E7FEB9249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D5683BA-8E7D-49FA-80FF-468E7FEB9249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D5683BA-8E7D-49FA-80FF-468E7FEB9249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D5683BA-8E7D-49FA-80FF-468E7FEB9249}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

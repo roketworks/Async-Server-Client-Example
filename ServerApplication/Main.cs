@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Shared;
 using SocketLib;
 
-namespace JMeterOutputReader {
+namespace AsyncDemo.ServerApplication {
   public partial class Main : Form {
 
     private delegate void SetTextCallback(int id, string host, string text);
@@ -26,13 +24,14 @@ namespace JMeterOutputReader {
       listViewClients.ItemSelectionChanged += (sender, args) => {
         if (_internalStorage.Any(c => c.Value.ClientId == args.Item.Name)) {
           _currentClientId = args.Item.Name;
+          this.txtClientId.Text = _currentClientId;
           this.txtOutput.Clear();
           this.txtOutput.Text = _internalStorage.First(c => c.Value.ClientId == args.Item.Name).Value.Message.ToString();
         }
       };
       
       var del = new Action<int, string>((int id, string s) => {
-         var o = (StreamObject)StringToObject(s);
+         var o = (StreamObject) ConversionHelper.StringToObject(s);
        
         if (!_internalStorage.ContainsKey(id)) {
           AddListItem(o.ClientId);
@@ -51,8 +50,17 @@ namespace JMeterOutputReader {
     private void btnSendMessage_Click(object sender, EventArgs e) {
       //var clientId = listViewClients.SelectedItems[0].Name;
       var id = _internalStorage.First(c => c.Value.ClientId == _currentClientId).Key;
-      Server.Send(id, this.txtClientMessage.Text);
+      var o = new ClientAction() {Action = ActionType.None, Message = this.txtClientMessage.Text};
+      Server.Send(id, ConversionHelper.ObjectToString(o));
     }
+
+    private void btnStopClient_Click(object sender, EventArgs e) {
+      var id = _internalStorage.First(c => c.Value.ClientId == _currentClientId).Key;
+      var o = new ClientAction() {
+        Action = ActionType.Stop, Message = "STOPPING CLIENT IN 5 SECONDS"
+      };
+      Server.Send(id, ConversionHelper.ObjectToString(o));
+    } 
 
     private void AddListItem(string clientId) {
       if (this.listViewClients.InvokeRequired) {
@@ -81,21 +89,12 @@ namespace JMeterOutputReader {
         }
       }
     }
-
-    private object StringToObject(string base64String) {
-      byte[] bytes = Convert.FromBase64String(base64String);
-      using (var ms = new MemoryStream(bytes, 0, bytes.Length)) {
-        ms.Write(bytes, 0, bytes.Length);
-        ms.Position = 0;
-        return new BinaryFormatter().Deserialize(ms);
-      }
-    }
-
+    
     private void Main_FormClosing(object sender, FormClosingEventArgs e) {
       Server.StopServer();
       Thread.Sleep(10);
       Application.Exit();
-    } 
+    }
   }
 
   internal struct ReponseStorage {

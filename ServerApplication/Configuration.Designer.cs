@@ -1,4 +1,4 @@
-﻿namespace JMeterOutputReader {
+﻿namespace AsyncDemo.ServerApplication {
   partial class Configuration {
     /// <summary>
     /// Required designer variable.

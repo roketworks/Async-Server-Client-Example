@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JMeterOutputReader")]
+[assembly: AssemblyTitle("TestSocketClient")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JMeterOutputReader")]
+[assembly: AssemblyProduct("TestSocketClient")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7bb9ef3e-4d69-4bc3-a7b9-718a2113e18c")]
+[assembly: Guid("d21251ae-2cc3-4759-b765-e988b80910af")]
 
 // Version information for an assembly consists of the following four values:
 //
