@@ -24,8 +24,12 @@
     /// </summary>
     private void InitializeComponent() {
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-      this.listView1 = new System.Windows.Forms.ListView();
-      this.textBox1 = new System.Windows.Forms.TextBox();
+      this.listViewClients = new System.Windows.Forms.ListView();
+      this.colClientId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.columnAdditional = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.txtClientMessage = new System.Windows.Forms.TextBox();
+      this.btnSendMessage = new System.Windows.Forms.Button();
+      this.txtOutput = new System.Windows.Forms.TextBox();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
@@ -40,50 +44,83 @@
       // 
       // splitContainer1.Panel1
       // 
-      this.splitContainer1.Panel1.Controls.Add(this.listView1);
+      this.splitContainer1.Panel1.Controls.Add(this.listViewClients);
       // 
       // splitContainer1.Panel2
       // 
-      this.splitContainer1.Panel2.Controls.Add(this.textBox1);
-      this.splitContainer1.Size = new System.Drawing.Size(923, 675);
-      this.splitContainer1.SplitterDistance = 307;
+      this.splitContainer1.Panel2.Controls.Add(this.txtClientMessage);
+      this.splitContainer1.Panel2.Controls.Add(this.btnSendMessage);
+      this.splitContainer1.Panel2.Controls.Add(this.txtOutput);
+      this.splitContainer1.Size = new System.Drawing.Size(857, 514);
+      this.splitContainer1.SplitterDistance = 285;
       this.splitContainer1.TabIndex = 0;
       // 
-      // listView1
+      // listViewClients
       // 
-      this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.listViewClients.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.listView1.FullRowSelect = true;
-      this.listView1.GridLines = true;
-      this.listView1.Location = new System.Drawing.Point(3, 3);
-      this.listView1.Name = "listView1";
-      this.listView1.Size = new System.Drawing.Size(301, 669);
-      this.listView1.TabIndex = 0;
-      this.listView1.UseCompatibleStateImageBehavior = false;
-      this.listView1.View = System.Windows.Forms.View.List;
+      this.listViewClients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colClientId,
+            this.columnAdditional});
+      this.listViewClients.FullRowSelect = true;
+      this.listViewClients.GridLines = true;
+      this.listViewClients.Location = new System.Drawing.Point(3, 3);
+      this.listViewClients.Name = "listViewClients";
+      this.listViewClients.Size = new System.Drawing.Size(279, 508);
+      this.listViewClients.TabIndex = 0;
+      this.listViewClients.UseCompatibleStateImageBehavior = false;
+      this.listViewClients.View = System.Windows.Forms.View.Details;
       // 
-      // textBox1
+      // colClientId
       // 
-      this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.colClientId.Text = "ClientId";
+      this.colClientId.Width = 100;
+      // 
+      // columnAdditional
+      // 
+      this.columnAdditional.Text = "Infomation";
+      this.columnAdditional.Width = 174;
+      // 
+      // txtClientMessage
+      // 
+      this.txtClientMessage.Location = new System.Drawing.Point(105, 482);
+      this.txtClientMessage.Name = "txtClientMessage";
+      this.txtClientMessage.Size = new System.Drawing.Size(460, 20);
+      this.txtClientMessage.TabIndex = 2;
+      // 
+      // btnSendMessage
+      // 
+      this.btnSendMessage.Location = new System.Drawing.Point(3, 482);
+      this.btnSendMessage.Name = "btnSendMessage";
+      this.btnSendMessage.Size = new System.Drawing.Size(95, 23);
+      this.btnSendMessage.TabIndex = 1;
+      this.btnSendMessage.Text = "Send Message";
+      this.btnSendMessage.UseVisualStyleBackColor = true;
+      this.btnSendMessage.Click += new System.EventHandler(this.btnSendMessage_Click);
+      // 
+      // txtOutput
+      // 
+      this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.textBox1.Location = new System.Drawing.Point(3, 3);
-      this.textBox1.Multiline = true;
-      this.textBox1.Name = "textBox1";
-      this.textBox1.ReadOnly = true;
-      this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.textBox1.Size = new System.Drawing.Size(606, 669);
-      this.textBox1.TabIndex = 0;
+      this.txtOutput.Location = new System.Drawing.Point(3, 3);
+      this.txtOutput.Multiline = true;
+      this.txtOutput.Name = "txtOutput";
+      this.txtOutput.ReadOnly = true;
+      this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+      this.txtOutput.Size = new System.Drawing.Size(562, 473);
+      this.txtOutput.TabIndex = 0;
       // 
       // Main
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(923, 675);
+      this.ClientSize = new System.Drawing.Size(857, 514);
       this.Controls.Add(this.splitContainer1);
       this.Name = "Main";
       this.Text = "JMeter Output Reader";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
       this.splitContainer1.Panel1.ResumeLayout(false);
       this.splitContainer1.Panel2.ResumeLayout(false);
       this.splitContainer1.Panel2.PerformLayout();
@@ -96,8 +133,12 @@
     #endregion
 
     private System.Windows.Forms.SplitContainer splitContainer1;
-    private System.Windows.Forms.ListView listView1;
-    private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.ListView listViewClients;
+    private System.Windows.Forms.TextBox txtOutput;
+    private System.Windows.Forms.ColumnHeader colClientId;
+    private System.Windows.Forms.ColumnHeader columnAdditional;
+    private System.Windows.Forms.Button btnSendMessage;
+    private System.Windows.Forms.TextBox txtClientMessage;
   }
 }
 

@@ -1,89 +1,105 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 using Shared;
 using SocketLib;
 
 namespace JMeterOutputReader {
   public partial class Main : Form {
 
-    private const int port = 8080;
-
-    private delegate void SetTextCallback(string host, string text);
+    private delegate void SetTextCallback(int id, string host, string text);
     private delegate void AddListItemCallback(string clientId);
     private object _locker;
-    private Dictionary<string, StringBuilder> _internalStorage;
+    private Dictionary<int, ReponseStorage> _internalStorage;
+    private string _currentClientId = String.Empty;
           
-    public Main() {
+    public Main(string ip, int port) {
       InitializeComponent();
       _locker = new object();
-      _internalStorage = new Dictionary<string, StringBuilder>(); 
+      _internalStorage = new Dictionary<int, ReponseStorage>(); 
 
-      listView1.ItemSelectionChanged += (sender, args) => {
-        if (_internalStorage.ContainsKey(args.Item.Name)) {
-          this.textBox1.Text = _internalStorage[args.Item.Name].ToString();
+      listViewClients.ItemSelectionChanged += (sender, args) => {
+        if (_internalStorage.Any(c => c.Value.ClientId == args.Item.Name)) {
+          _currentClientId = args.Item.Name;
+          this.txtOutput.Clear();
+          this.txtOutput.Text = _internalStorage.First(c => c.Value.ClientId == args.Item.Name).Value.Message.ToString();
         }
       };
       
-      var del = new Action<string>((string s) => {
-        var xml = new XmlSerializer(typeof (StreamObject));
-        StreamObject o;
-        using (var sr = new StringReader(s)) {
-          o = (StreamObject) xml.Deserialize(sr);
-        }
-
-        if (!_internalStorage.ContainsKey(o.ClientId)) {
+      var del = new Action<int, string>((int id, string s) => {
+         var o = (StreamObject)StringToObject(s);
+       
+        if (!_internalStorage.ContainsKey(id)) {
           AddListItem(o.ClientId);
           lock (_locker) {
-            _internalStorage.Add(o.ClientId, new StringBuilder());
+            _internalStorage.Add(id, new ReponseStorage { ClientId = o.ClientId, Message = new StringBuilder() });
           }
         }
-        this.SetText(o.ClientId, o.Message);
+        this.SetText(id, o.ClientId, o.Message);
       });
 
-      Server.MessageReceived += (id, msg) => del(msg);
-      var serverThread = new Thread(new ParameterizedThreadStart(o => Server.StartServer(Convert.ToInt32(o))));
-      serverThread.Start(port);
+      Server.MessageReceived += (id, msg) => del(id, msg);
+      var serverThread = new Thread(() => Server.StartServer(ip, port));
+      serverThread.Start();
+    }
+
+    private void btnSendMessage_Click(object sender, EventArgs e) {
+      //var clientId = listViewClients.SelectedItems[0].Name;
+      var id = _internalStorage.First(c => c.Value.ClientId == _currentClientId).Key;
+      Server.Send(id, this.txtClientMessage.Text);
     }
 
     private void AddListItem(string clientId) {
-      if (this.listView1.InvokeRequired) {
+      if (this.listViewClients.InvokeRequired) {
         var a = new AddListItemCallback(AddListItem);
         this.Invoke(a, new object[] {clientId});
       }
       else {
-        listView1.Items.Add(new ListViewItem() {Name = clientId, Text = clientId});
+        var listViewItem = new ListViewItem() { Name = clientId, Text = clientId };
+        listViewItem.SubItems.Add("Additional Info: ");
+        listViewClients.Items.Add(listViewItem);
       }
     }
 
-    private void SetText(string clientId, string message) {
-      if (this.textBox1.InvokeRequired) {
+    private void SetText(int id, string clientId, string message) {
+      if (this.txtOutput.InvokeRequired) {
         SetTextCallback d = new SetTextCallback(SetText);
-        this.Invoke(d, new object[] { clientId, message });
+        this.Invoke(d, new object[] { id, clientId, message });
       }
       else {
-        if (listView1.SelectedItems.Count > 0 && listView1.SelectedItems[0].Name == clientId) {
-          _internalStorage[clientId].AppendLine(message);
-          this.textBox1.Text = this.textBox1.Text + Environment.NewLine + message;
+        if (listViewClients.SelectedItems.Count > 0 && listViewClients.SelectedItems[0].Name == clientId) {
+          _internalStorage[id].Message.AppendLine(message);
+          this.txtOutput.AppendText(message + Environment.NewLine);
         }
         else {
-          _internalStorage[clientId].AppendLine(message);
+          _internalStorage[id].Message.AppendLine(message);
         }
       }
     }
 
-    private StreamObject ByteArrayToObject(byte[] arrBytes, int length) {
-       MemoryStream memStream = new MemoryStream();
-       BinaryFormatter binForm = new BinaryFormatter();
-       memStream.Write(arrBytes, 0, length);
-       memStream.Seek(0, SeekOrigin.Begin);
-       var obj = (StreamObject) binForm.Deserialize(memStream);
-       return obj;
-     }
+    private object StringToObject(string base64String) {
+      byte[] bytes = Convert.FromBase64String(base64String);
+      using (var ms = new MemoryStream(bytes, 0, bytes.Length)) {
+        ms.Write(bytes, 0, bytes.Length);
+        ms.Position = 0;
+        return new BinaryFormatter().Deserialize(ms);
+      }
+    }
+
+    private void Main_FormClosing(object sender, FormClosingEventArgs e) {
+      Server.StopServer();
+      Thread.Sleep(10);
+      Application.Exit();
+    } 
+  }
+
+  internal struct ReponseStorage {
+    public string ClientId;
+    public StringBuilder Message;
   }
 }

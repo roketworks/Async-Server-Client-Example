@@ -61,47 +61,44 @@ namespace SocketLib {
     }
 
     public void Receive() {
-      try {
-        // Create the state object.
-        ClientStateObject state = new ClientStateObject();
-        state.workSocket = _listener;
+      if (!IsConnected()) {
+        throw new Exception("Client not connected");
+      }
 
-        // Begin receiving the data from the remote device.
-        state.workSocket.BeginReceive(state.buffer, 0, ClientStateObject.BufferSize, 0,
-          new AsyncCallback(ReceiveCallback), state);
-      }
-      catch (Exception e) {
-        Console.WriteLine(e.ToString());
-      }
+      var state = new ClientStateObject();
+      state.workSocket = _listener;
+      _listener.BeginReceive(state.buffer, 0, ClientStateObject.BufferSize, SocketFlags.None, ReceiveCallback, state);
     }
 
     private void ReceiveCallback(IAsyncResult ar) {
+      var clientState = (ClientStateObject) ar.AsyncState;
       try {
-        // Retrieve the state object and the client socket 
-        // from the asynchronous state object.
-        ClientStateObject state = (ClientStateObject) ar.AsyncState;
-        Socket client = state.workSocket;
-
-        // Read data from the remote device.
-        int bytesRead = client.EndReceive(ar);
-
-        if (bytesRead > 0) {
-          // There might be more data, so store the data received so far.
-          //state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-
-          // Get the rest of the data.
-          client.BeginReceive(state.buffer, 0, ClientStateObject.BufferSize, 0,
-            new AsyncCallback(ReceiveCallback), state);
+        int bytesRecieved = clientState.workSocket.EndReceive(ar);
+        if (bytesRecieved > 0) {
+          clientState.sb.Append(Encoding.UTF8.GetString(clientState.buffer, 0, bytesRecieved));
+        }
+        if (bytesRecieved == ClientStateObject.BufferSize) {
+          clientState.workSocket.BeginReceive(clientState.buffer, 0, ClientStateObject.BufferSize, SocketFlags.None,
+            ReceiveCallback, clientState);
         }
         else {
-          // All the data has arrived; put it in response.
-
-          // Signal that all bytes have been received.
-          receiveDone.Set();
+          if (!String.IsNullOrEmpty(clientState.sb.ToString())) {
+            MessageReceived(this, clientState.sb.ToString());
+            clientState.sb = new StringBuilder();
+            receiveDone.Set();
+            clientState.workSocket.BeginReceive(clientState.buffer, 0, ClientStateObject.BufferSize, SocketFlags.None,
+              ReceiveCallback, clientState);
+          }
+          else {
+            Console.WriteLine("Connection likely closing");
+          }
         }
       }
-      catch (Exception e) {
-        Console.WriteLine(e.ToString());
+      catch (ObjectDisposedException) {
+        // Connection likely closed
+      }
+      catch (SocketException) {
+        // Server connection failed
       }
     }
 
