@@ -19,9 +19,15 @@ namespace AsyncDemo.ServerApplication {
     public Main(string ip, int port) {
       InitializeComponent();
       _locker = new object();
-      _internalStorage = new Dictionary<int, ReponseStorage>(); 
+      _internalStorage = new Dictionary<int, ReponseStorage>();
+
+      splitContainer.Panel2.Hide();
 
       listViewClients.ItemSelectionChanged += (sender, args) => {
+        if (!splitContainer.Panel2.Visible) {
+          splitContainer.Panel2.Show();
+        }
+
         if (_internalStorage.Any(c => c.Value.ClientId == args.Item.Name)) {
           _currentClientId = args.Item.Name;
           this.txtClientId.Text = _currentClientId;
@@ -29,7 +35,7 @@ namespace AsyncDemo.ServerApplication {
           this.txtOutput.Text = _internalStorage.First(c => c.Value.ClientId == args.Item.Name).Value.Message.ToString();
         }
       };
-      
+     
       var del = new Action<int, string>((int id, string s) => {
          var o = (StreamObject) ConversionHelper.StringToObject(s);
        
@@ -48,7 +54,6 @@ namespace AsyncDemo.ServerApplication {
     }
 
     private void btnSendMessage_Click(object sender, EventArgs e) {
-      //var clientId = listViewClients.SelectedItems[0].Name;
       var id = _internalStorage.First(c => c.Value.ClientId == _currentClientId).Key;
       var o = new ClientAction() {Action = ActionType.None, Message = this.txtClientMessage.Text};
       Server.Send(id, ConversionHelper.ObjectToString(o));

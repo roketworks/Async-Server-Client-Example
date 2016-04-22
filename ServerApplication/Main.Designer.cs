@@ -23,7 +23,7 @@
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-      this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+      this.splitContainer = new System.Windows.Forms.SplitContainer();
       this.listViewClients = new System.Windows.Forms.ListView();
       this.colClientId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnAdditional = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -33,33 +33,33 @@
       this.txtClientMessage = new System.Windows.Forms.TextBox();
       this.btnSendMessage = new System.Windows.Forms.Button();
       this.txtOutput = new System.Windows.Forms.TextBox();
-      ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-      this.splitContainer1.Panel1.SuspendLayout();
-      this.splitContainer1.Panel2.SuspendLayout();
-      this.splitContainer1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+      this.splitContainer.Panel1.SuspendLayout();
+      this.splitContainer.Panel2.SuspendLayout();
+      this.splitContainer.SuspendLayout();
       this.SuspendLayout();
       // 
-      // splitContainer1
+      // splitContainer
       // 
-      this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-      this.splitContainer1.Name = "splitContainer1";
+      this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.splitContainer.Location = new System.Drawing.Point(0, 0);
+      this.splitContainer.Name = "splitContainer";
       // 
-      // splitContainer1.Panel1
+      // splitContainer.Panel1
       // 
-      this.splitContainer1.Panel1.Controls.Add(this.listViewClients);
+      this.splitContainer.Panel1.Controls.Add(this.listViewClients);
       // 
-      // splitContainer1.Panel2
+      // splitContainer.Panel2
       // 
-      this.splitContainer1.Panel2.Controls.Add(this.txtClientId);
-      this.splitContainer1.Panel2.Controls.Add(this.lblClientId);
-      this.splitContainer1.Panel2.Controls.Add(this.btnStopClient);
-      this.splitContainer1.Panel2.Controls.Add(this.txtClientMessage);
-      this.splitContainer1.Panel2.Controls.Add(this.btnSendMessage);
-      this.splitContainer1.Panel2.Controls.Add(this.txtOutput);
-      this.splitContainer1.Size = new System.Drawing.Size(857, 514);
-      this.splitContainer1.SplitterDistance = 285;
-      this.splitContainer1.TabIndex = 0;
+      this.splitContainer.Panel2.Controls.Add(this.txtClientId);
+      this.splitContainer.Panel2.Controls.Add(this.lblClientId);
+      this.splitContainer.Panel2.Controls.Add(this.btnStopClient);
+      this.splitContainer.Panel2.Controls.Add(this.txtClientMessage);
+      this.splitContainer.Panel2.Controls.Add(this.btnSendMessage);
+      this.splitContainer.Panel2.Controls.Add(this.txtOutput);
+      this.splitContainer.Size = new System.Drawing.Size(857, 514);
+      this.splitContainer.SplitterDistance = 285;
+      this.splitContainer.TabIndex = 0;
       // 
       // listViewClients
       // 
@@ -151,22 +151,22 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(857, 514);
-      this.Controls.Add(this.splitContainer1);
+      this.Controls.Add(this.splitContainer);
       this.Name = "Main";
       this.Text = "Server Application";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
-      this.splitContainer1.Panel1.ResumeLayout(false);
-      this.splitContainer1.Panel2.ResumeLayout(false);
-      this.splitContainer1.Panel2.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-      this.splitContainer1.ResumeLayout(false);
+      this.splitContainer.Panel1.ResumeLayout(false);
+      this.splitContainer.Panel2.ResumeLayout(false);
+      this.splitContainer.Panel2.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+      this.splitContainer.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
 
     #endregion
 
-    private System.Windows.Forms.SplitContainer splitContainer1;
+    private System.Windows.Forms.SplitContainer splitContainer;
     private System.Windows.Forms.ListView listViewClients;
     private System.Windows.Forms.TextBox txtOutput;
     private System.Windows.Forms.ColumnHeader colClientId;
