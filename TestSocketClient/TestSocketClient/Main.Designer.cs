@@ -25,8 +25,8 @@
     private void InitializeComponent() {
       this.btnSend = new System.Windows.Forms.Button();
       this.textBoxClientId = new System.Windows.Forms.TextBox();
-      this.label1 = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
+      this.lblClientId = new System.Windows.Forms.Label();
+      this.lblMessage = new System.Windows.Forms.Label();
       this.textMessage = new System.Windows.Forms.TextBox();
       this.lblOutput = new System.Windows.Forms.Label();
       this.txtReceieved = new System.Windows.Forms.TextBox();
@@ -59,23 +59,23 @@
       this.textBoxClientId.Size = new System.Drawing.Size(368, 20);
       this.textBoxClientId.TabIndex = 1;
       // 
-      // label1
+      // lblClientId
       // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(4, 49);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(45, 13);
-      this.label1.TabIndex = 2;
-      this.label1.Text = "Client Id";
+      this.lblClientId.AutoSize = true;
+      this.lblClientId.Location = new System.Drawing.Point(4, 49);
+      this.lblClientId.Name = "lblClientId";
+      this.lblClientId.Size = new System.Drawing.Size(45, 13);
+      this.lblClientId.TabIndex = 2;
+      this.lblClientId.Text = "Client Id";
       // 
-      // label2
+      // lblMessage
       // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(4, 75);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(50, 13);
-      this.label2.TabIndex = 4;
-      this.label2.Text = "Message";
+      this.lblMessage.AutoSize = true;
+      this.lblMessage.Location = new System.Drawing.Point(4, 75);
+      this.lblMessage.Name = "lblMessage";
+      this.lblMessage.Size = new System.Drawing.Size(50, 13);
+      this.lblMessage.TabIndex = 4;
+      this.lblMessage.Text = "Message";
       // 
       // textMessage
       // 
@@ -192,9 +192,9 @@
       this.Controls.Add(this.statusStrip);
       this.Controls.Add(this.txtReceieved);
       this.Controls.Add(this.lblOutput);
-      this.Controls.Add(this.label2);
+      this.Controls.Add(this.lblMessage);
       this.Controls.Add(this.textMessage);
-      this.Controls.Add(this.label1);
+      this.Controls.Add(this.lblClientId);
       this.Controls.Add(this.textBoxClientId);
       this.Controls.Add(this.btnSend);
       this.MaximizeBox = false;
@@ -213,8 +213,8 @@
 
     private System.Windows.Forms.Button btnSend;
     private System.Windows.Forms.TextBox textBoxClientId;
-    private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label lblClientId;
+    private System.Windows.Forms.Label lblMessage;
     private System.Windows.Forms.TextBox textMessage;
     private System.Windows.Forms.Label lblOutput;
     private System.Windows.Forms.TextBox txtReceieved;

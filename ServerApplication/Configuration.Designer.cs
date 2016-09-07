@@ -23,83 +23,83 @@
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-      this.comboBox1 = new System.Windows.Forms.ComboBox();
-      this.label1 = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
-      this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-      this.button1 = new System.Windows.Forms.Button();
-      this.button2 = new System.Windows.Forms.Button();
+      this.comboIpAddr = new System.Windows.Forms.ComboBox();
+      this.lblAddress = new System.Windows.Forms.Label();
+      this.lblPort = new System.Windows.Forms.Label();
+      this.numPort = new System.Windows.Forms.NumericUpDown();
+      this.btnVerify = new System.Windows.Forms.Button();
+      this.btnStart = new System.Windows.Forms.Button();
       this.label3 = new System.Windows.Forms.Label();
-      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
       this.SuspendLayout();
       // 
-      // comboBox1
+      // comboIpAddr
       // 
-      this.comboBox1.FormattingEnabled = true;
-      this.comboBox1.Location = new System.Drawing.Point(76, 6);
-      this.comboBox1.Name = "comboBox1";
-      this.comboBox1.Size = new System.Drawing.Size(333, 21);
-      this.comboBox1.TabIndex = 0;
+      this.comboIpAddr.FormattingEnabled = true;
+      this.comboIpAddr.Location = new System.Drawing.Point(76, 6);
+      this.comboIpAddr.Name = "comboIpAddr";
+      this.comboIpAddr.Size = new System.Drawing.Size(333, 21);
+      this.comboIpAddr.TabIndex = 0;
       // 
-      // label1
+      // lblAddress
       // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(12, 9);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(58, 13);
-      this.label1.TabIndex = 1;
-      this.label1.Text = "IP Address";
+      this.lblAddress.AutoSize = true;
+      this.lblAddress.Location = new System.Drawing.Point(12, 9);
+      this.lblAddress.Name = "lblAddress";
+      this.lblAddress.Size = new System.Drawing.Size(58, 13);
+      this.lblAddress.TabIndex = 1;
+      this.lblAddress.Text = "IP Address";
       // 
-      // label2
+      // lblPort
       // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(12, 33);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(26, 13);
-      this.label2.TabIndex = 2;
-      this.label2.Text = "Port";
+      this.lblPort.AutoSize = true;
+      this.lblPort.Location = new System.Drawing.Point(12, 33);
+      this.lblPort.Name = "lblPort";
+      this.lblPort.Size = new System.Drawing.Size(26, 13);
+      this.lblPort.TabIndex = 2;
+      this.lblPort.Text = "Port";
       // 
-      // numericUpDown1
+      // numPort
       // 
-      this.numericUpDown1.Location = new System.Drawing.Point(76, 31);
-      this.numericUpDown1.Maximum = new decimal(new int[] {
+      this.numPort.Location = new System.Drawing.Point(76, 31);
+      this.numPort.Maximum = new decimal(new int[] {
             99999,
             0,
             0,
             0});
-      this.numericUpDown1.Minimum = new decimal(new int[] {
+      this.numPort.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-      this.numericUpDown1.Name = "numericUpDown1";
-      this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-      this.numericUpDown1.TabIndex = 4;
-      this.numericUpDown1.Value = new decimal(new int[] {
+      this.numPort.Name = "numPort";
+      this.numPort.Size = new System.Drawing.Size(120, 20);
+      this.numPort.TabIndex = 4;
+      this.numPort.Value = new decimal(new int[] {
             8080,
             0,
             0,
             0});
       // 
-      // button1
+      // btnVerify
       // 
-      this.button1.Location = new System.Drawing.Point(196, 60);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(111, 29);
-      this.button1.TabIndex = 5;
-      this.button1.Text = "Verify Configuration";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
+      this.btnVerify.Location = new System.Drawing.Point(196, 60);
+      this.btnVerify.Name = "btnVerify";
+      this.btnVerify.Size = new System.Drawing.Size(111, 29);
+      this.btnVerify.TabIndex = 5;
+      this.btnVerify.Text = "Verify Configuration";
+      this.btnVerify.UseVisualStyleBackColor = true;
+      this.btnVerify.Click += new System.EventHandler(this.button1_Click);
       // 
-      // button2
+      // btnStart
       // 
-      this.button2.Location = new System.Drawing.Point(313, 60);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(96, 29);
-      this.button2.TabIndex = 6;
-      this.button2.Text = "Start Server";
-      this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.button2_Click);
+      this.btnStart.Location = new System.Drawing.Point(313, 60);
+      this.btnStart.Name = "btnStart";
+      this.btnStart.Size = new System.Drawing.Size(96, 29);
+      this.btnStart.TabIndex = 6;
+      this.btnStart.Text = "Start Server";
+      this.btnStart.UseVisualStyleBackColor = true;
+      this.btnStart.Click += new System.EventHandler(this.button2_Click);
       // 
       // label3
       // 
@@ -115,16 +115,16 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(419, 98);
       this.Controls.Add(this.label3);
-      this.Controls.Add(this.button2);
-      this.Controls.Add(this.button1);
-      this.Controls.Add(this.numericUpDown1);
-      this.Controls.Add(this.label2);
-      this.Controls.Add(this.label1);
-      this.Controls.Add(this.comboBox1);
+      this.Controls.Add(this.btnStart);
+      this.Controls.Add(this.btnVerify);
+      this.Controls.Add(this.numPort);
+      this.Controls.Add(this.lblPort);
+      this.Controls.Add(this.lblAddress);
+      this.Controls.Add(this.comboIpAddr);
       this.Name = "Configuration";
       this.Text = "Configure Server";
       this.Load += new System.EventHandler(this.Configuration_Load);
-      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -132,12 +132,12 @@
 
     #endregion
 
-    private System.Windows.Forms.ComboBox comboBox1;
-    private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.NumericUpDown numericUpDown1;
-    private System.Windows.Forms.Button button1;
-    private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.ComboBox comboIpAddr;
+    private System.Windows.Forms.Label lblAddress;
+    private System.Windows.Forms.Label lblPort;
+    private System.Windows.Forms.NumericUpDown numPort;
+    private System.Windows.Forms.Button btnVerify;
+    private System.Windows.Forms.Button btnStart;
     private System.Windows.Forms.Label label3;
   }
 }

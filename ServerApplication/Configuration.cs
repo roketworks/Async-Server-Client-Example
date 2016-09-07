@@ -15,7 +15,7 @@ namespace AsyncDemo.ServerApplication {
 
     private void Configuration_Load(object sender, EventArgs e) {
       foreach (var ipAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList) {
-        this.comboBox1.Items.Add(ipAddress.ToString());
+        this.comboIpAddr.Items.Add(ipAddress.ToString());
       }
     }
 
@@ -29,13 +29,13 @@ namespace AsyncDemo.ServerApplication {
       TcpConnectionInformation[] tcpConnInfoArray = ipGlobalProperties.GetActiveTcpConnections();
 
       foreach (TcpConnectionInformation tcpi in tcpConnInfoArray) {
-        if (tcpi.LocalEndPoint.Port == this.numericUpDown1.Value) {
+        if (tcpi.LocalEndPoint.Port == this.numPort.Value) {
           isValid = false;
           break;
         }
       }
 
-      if (this.comboBox1.SelectedItem == null) {
+      if (this.comboIpAddr.SelectedItem == null) {
         isValid = false;
       }
 
@@ -53,7 +53,7 @@ namespace AsyncDemo.ServerApplication {
 
     private void button2_Click(object sender, EventArgs e) {
       VerifySettings();
-      var main = new Main(this.comboBox1.Text, Convert.ToInt32(this.numericUpDown1.Value));
+      var main = new Main(this.comboIpAddr.Text, Convert.ToInt32(this.numPort.Value));
       main.Show();
       this.Hide();
     }
